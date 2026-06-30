@@ -20,6 +20,42 @@ window.addEventListener("scroll", () => {
 });
 
 
+
+
+
+//================ MOBILE MENU ================
+
+const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const icon = menuBtn.querySelector("i");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("show");
+
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-xmark");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("show");
+
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+
+    });
+
+});
+
+
+
+
+
+
 const video = document.querySelector(".video-bg");
 
 video.addEventListener("loadeddata", () => {
@@ -52,6 +88,9 @@ gsap.from(".buttons",{
     duration:1,
     delay:1
 })
+
+
+
 
 
 gsap.from(".about-image",{
@@ -91,23 +130,15 @@ gsap.from(".about-content",{
 });
 
 gsap.from(".card",{
-
     y:80,
-
     opacity:0,
-
-    stagger:.2,
-
+    stagger:0.2,
     duration:1,
-
+    clearProps:"transform",
     scrollTrigger:{
-
         trigger:".about-cards",
-
         start:"top 80%"
-
     }
-
 });
 
 
@@ -125,11 +156,11 @@ const projects = {
 
     house1:{
 
-        title:"Luxury Villa",
+        title:"Girardot Cundinamarca",
 
-        category:"Residential Design",
+        category:"Diseño Residencial",
 
-        description:"Modern luxury house designed with clean architecture, large glass façades and premium finishes.",
+        description:"Lujosa residencia con diseño arquitectónico moderno y acabados de alta calidad.",
 
         images:[
             "images/house1-1.png",
@@ -142,16 +173,17 @@ const projects = {
 
     house2:{
 
-        title:"Modern Residence",
+        title:"Flandes Tolima",
 
-        category:"Architecture",
+        category:"Diseño Residencial",
 
-        description:"Contemporary residence with minimalist design and open spaces.",
+        description:"Residencia moderna con diseño minimalista y espacios abiertos.",
 
         images:[
             "images/house2-1.png",
             "images/house2-2.png",
-            "images/house2-3.png"
+            "images/house2-3.png",
+            "images/house2-4.jpg"
         ]
 
     },
@@ -261,5 +293,64 @@ document.addEventListener("keydown",(e)=>{
         modal.classList.remove("active");
 
     }
+
+});
+
+
+
+
+//================ EMAIL JS ================//
+
+emailjs.init("fgrGLnqpLVV-oSH99");
+
+const contactForm = document.getElementById("contact-form");
+const message = document.getElementById("form-message");
+const button = contactForm.querySelector(".btn");
+const buttonText = button.querySelector(".btn-text");
+
+contactForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    message.className = "form-message";
+    message.textContent = "";
+
+    button.classList.add("loading");
+    buttonText.textContent = "Sending...";
+
+    emailjs.sendForm(
+        "service_q70l866",
+        "template_oqqxh4x",
+        contactForm
+    )
+    .then(() => {
+
+        message.classList.add("success");
+        message.textContent = "Your message has been sent successfully!";
+
+        contactForm.reset();
+
+    })
+    .catch((error) => {
+
+        console.error(error);
+
+        message.classList.add("error");
+        message.textContent = "Something went wrong. Please try again.";
+
+    })
+    .finally(() => {
+
+        button.classList.remove("loading");
+        buttonText.textContent = "Send Message";
+
+        setTimeout(() => {
+
+            message.className = "form-message";
+            message.textContent = "";
+
+        }, 5000);
+
+    });
 
 });
