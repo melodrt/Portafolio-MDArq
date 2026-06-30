@@ -11,6 +11,13 @@ background:#000;
 
 /*========== NAVBAR ==========*/
 
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
 .header{
 
     position:fixed;
@@ -255,6 +262,65 @@ background:#000;
 }
 
 
+
+
+.scroll{
+
+    position:absolute;
+
+    left:8%;
+
+    bottom:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:.95rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:.3s;
+
+    animation:scrollMove 2s infinite;
+
+}
+
+.scroll i{
+
+    font-size:1.3rem;
+
+}
+
+.scroll:hover{
+
+    color:#ee7e22;
+
+}
+
+@keyframes scrollMove{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(8px);
+
+    }
+
+}
 
 
 

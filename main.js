@@ -190,11 +190,11 @@ const projects = {
 
     house3:{
 
-        title:"Interior Rendering",
+        title:"Arbelaez Cundinamarca",
 
-        category:"3D Visualization",
+        category:"Diseño Residencial",
 
-        description:"Photorealistic rendering for residential interior design.",
+        description:"Residencia campestre contemporánea con diseño innovador y enfoque en sostenibilidad.",
 
         images:[
             "images/house3-1.png",
@@ -206,11 +206,11 @@ const projects = {
 
     house4:{
 
-        title:"Business Center",
+        title:"Michigan USA",
 
-        category:"Commercial",
+        category:"Diseño Residencial",
 
-        description:"Commercial office building designed for corporate environments.",
+        description:"Residencia moderna de 2 pisos en Michigan, Estados Unidos.",
 
         images:[
             "images/house4-1.png",
