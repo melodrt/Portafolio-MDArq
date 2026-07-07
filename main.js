@@ -20,9 +20,6 @@ window.addEventListener("scroll", () => {
 });
 
 
-
-
-
 //================ MOBILE MENU ================
 
 const menuBtn = document.getElementById("menu-btn");
@@ -50,10 +47,6 @@ document.querySelectorAll(".nav-links a").forEach(link => {
     });
 
 });
-
-
-
-
 
 
 const video = document.querySelector(".video-bg");
@@ -88,9 +81,6 @@ gsap.from(".buttons",{
     duration:1,
     delay:1
 })
-
-
-
 
 
 gsap.from(".about-image",{
@@ -295,6 +285,272 @@ document.addEventListener("keydown",(e)=>{
     }
 
 });
+
+
+
+
+
+
+/*================ OTROS PROYECTOS ================*/
+
+/*==================== SLIDER ====================*/
+
+const slider = document.getElementById("projectSlider");
+
+const nextBtn = document.querySelector(".next");
+
+const prevBtn = document.querySelector(".prev");
+
+nextBtn.onclick = () => {
+
+slider.scrollBy({
+
+left:460,
+
+behavior:"smooth"
+
+});
+
+};
+
+prevBtn.onclick = () => {
+
+slider.scrollBy({
+
+left:-460,
+
+behavior:"smooth"
+
+});
+
+};
+
+
+
+
+
+const otherProjects = {
+
+    proyecto1:{
+
+        title:"Estacion de Bombeo Santiago",
+
+        category:"Industrial",
+
+        location:"Santiago, Panama",
+
+        company:"MDARQ Studio",
+
+        area:"550 m²",
+
+        year:"2026",
+
+        description:"Diseño Estructural y detalles constructivos de la estación de bombeo.",
+
+        images:[
+
+            "otros/estacion.png",
+
+            "otros/estacion1.png",
+
+            "otros/estacion2.png",
+
+            "otros/estacion3.png"
+
+        ]
+
+    },
+
+    proyecto2:{
+
+        title:"Bodegas Rosalinda",
+
+        category:"Industrial",
+
+        location:"Bogota, Cundinamarca",
+
+        company:"ETSTECHNOLOGY",
+
+        area:"1.520 m²",
+
+        year:"2026",
+
+        description:"Diseño Estructural y despiece de acero para plano taller de bodegas.",
+
+        images:[
+
+            "otros/bodega.png",
+
+            "otros/bodega1.png",
+
+            "otros/bodega2.png",
+
+            "otros/bodega3.png"
+
+        ]
+
+    },
+
+
+    proyecto3:{
+
+        title:"Red Electrica Spa",
+
+        category:"Comercial",
+
+        location:"Bogota, Cundinamarca",
+
+        company:"ETSTECHNOLOGY",
+
+        area:"340 m²",
+
+        year:"2026",
+
+        description:"Diseño de spa con instalaciones modernas.",
+
+        images:[
+
+            "otros/spa1.png",
+
+            "otros/spa2.png",
+
+            "otros/spa3.png",
+
+            "otros/spa4.png"
+
+        ]
+
+    },
+
+
+    proyecto4:{
+
+        title:"Red Electrica Registraduria Sahagun",
+
+        category:"Comercial",
+
+        location:"Sincelejo, Sucre",
+
+        company:"MYM TECNICOS INGENIEROS SAS",
+
+        area:"410 m²",
+
+        year:"2025",
+
+        description:"Diseño de red electrica de instalaciones modernas.",
+
+        images:[
+
+            "otros/registraduria.png",
+
+            "otros/registraduria1.png",
+
+            "otros/registraduria2.png"
+
+        ]
+
+    }
+
+};
+
+
+
+
+
+const otherModal = document.getElementById("otherModal");
+
+const otherImage = document.getElementById("otherMainImage");
+
+const otherThumbs = document.querySelector(".other-thumbnails");
+
+const otherClose = document.querySelector(".other-close");
+
+document.querySelectorAll(".view-project").forEach(btn => {
+
+    btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        const project = otherProjects[this.dataset.project];
+
+        if(!project){
+            console.log("Proyecto no encontrado");
+            return;
+        }
+
+        document.getElementById("otherTitle").textContent = project.title;
+        document.getElementById("otherCategory").textContent = project.category;
+        document.getElementById("otherLocation").textContent = "📍 " + project.location;
+        document.getElementById("otherCompany").textContent = "🏢 " + project.company;
+        document.getElementById("otherArea").textContent = "📐 " + project.area;
+        document.getElementById("otherYear").textContent = "📅 " + project.year;
+        document.getElementById("otherDescription").textContent = project.description;
+
+        otherImage.src = project.images[0];
+
+        otherThumbs.innerHTML = "";
+
+        project.images.forEach(img => {
+
+            const image = document.createElement("img");
+
+            image.src = img;
+
+            image.classList.add("thumb");
+
+            image.addEventListener("click", ()=>{
+
+                otherImage.src = img;
+
+            });
+
+            otherThumbs.appendChild(image);
+
+        });
+
+        otherModal.classList.add("active");
+
+    });
+
+});
+
+
+/*================ CERRAR ================*/
+
+otherClose.addEventListener("click", ()=>{
+
+    otherModal.classList.remove("active");
+
+});
+
+
+/* clic por fuera */
+
+otherModal.addEventListener("click",(e)=>{
+
+    if(e.target===otherModal){
+
+        otherModal.classList.remove("active");
+
+    }
+
+});
+
+
+/* ESC */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        otherModal.classList.remove("active");
+
+    }
+
+});
+
+
+
 
 
 
